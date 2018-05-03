@@ -1,0 +1,6 @@
+10 if A = 10
+20 if B=10
+30 endif
+40 if
+50 endif
+60 ENDIF
