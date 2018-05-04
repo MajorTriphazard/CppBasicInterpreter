@@ -3,10 +3,11 @@
 #include <sstream>
 #include <string>
 #include <map>
+#include "LineNode.h"
 
 using namespace std;
 
-class ifStatement
+class ifStatement : public LineNode
 {
 public:
 	ifStatement(string);

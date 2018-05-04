@@ -4,7 +4,7 @@
 
 Handler::Handler()
 {
-		variables = new map<char, int>;
+	variables = new map<char, int>;
 }
 
 Handler::~Handler(){}

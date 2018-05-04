@@ -1,4 +1,14 @@
-﻿  Handler.cpp
-  ifStatement.cpp
+﻿  ifStatement.cpp
   Generating Code...
-  Project1.vcxproj -> C:\Users\Genna\source\repos\CppBasicInterpreter\x64\Debug\Project1.exe
+  Compiling...
+  Handler.cpp
+c:\users\scott\documents\c++basicinterpreter\project1\handler.cpp(25): error C2259: 'ifStatement': cannot instantiate abstract class
+  c:\users\scott\documents\c++basicinterpreter\project1\handler.cpp(25): note: due to following members:
+  c:\users\scott\documents\c++basicinterpreter\project1\handler.cpp(25): note: 'bool LineNode::Run(std::map<int,LineNode *,std::less<int>,std::allocator<std::pair<const _Kty,_Ty>>> &,std::map<char,int,std::less<char>,std::allocator<std::pair<const char,int>>> &,std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const _Kty,_Ty>>>> &)': is abstract
+          with
+          [
+              _Kty=int,
+              _Ty=LineNode *
+          ]
+  c:\users\scott\documents\c++basicinterpreter\project1\linenode.h(12): note: see declaration of 'LineNode::Run'
+  Generating Code...
