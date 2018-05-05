@@ -5,12 +5,16 @@
 #include <map>
 #include "LineNode.h"
 
-using namespace std;
+//using namespace std;
 
 class ifStatement : public LineNode
 {
 public:
-	ifStatement(string);
+	int _endIfLineNumber;
+	std::string _arg1, _arg2;
+	char _op;
+	ifStatement(std::string, std::map<std::string, int>&);
 	~ifStatement();
+	void setEndIf(int endIfLine);
+	bool Run(std::map<int, LineNode*>& LineList, std::map<std::string, int>& variables, int& iterator);
 };
-

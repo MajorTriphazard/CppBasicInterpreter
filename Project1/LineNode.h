@@ -9,5 +9,5 @@ class LineNode
 public:
 	virtual ~LineNode() {}
 
-	virtual bool Run(std::map<int, LineNode*>& LineList, std::map<char, int>& variables, std::map<int, LineNode*>::iterator& iterator) = 0;
+	virtual bool Run(std::map<int, LineNode*>& LineList, std::map<std::string, int>& variables, int& iterator) = 0;
 };

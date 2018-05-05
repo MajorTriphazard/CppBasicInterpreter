@@ -6,15 +6,17 @@
 #include <algorithm>
 #include <stack>
 #include <map>
+#include "LineNode.h"
 
-using namespace std;
+//using namespace std;
 
 class Handler {
 public:
-	map<char, int>* variables;
-	int lineItterator;
-
+	std::map<std::string, int>* _variables;
+	std::map<int, LineNode*>* _lineList;
+	int _iterator;
 	Handler();
 	~Handler();
-	bool operator>>(istream &input);
+	bool operator>>(std::istream &input);
+	bool executeProgram();
 };

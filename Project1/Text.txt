@@ -1,6 +1,6 @@
-10 if A = 10
+10 if A<111
 20 if B=10
-30 endif
-40 if
-50 endif
+30 if C>100
+40 endif
+50 ENDIF
 60 ENDIF
