@@ -4,3 +4,8 @@
 40 endif
 50 ENDIF
 60 ENDIF
+70 PRINT A
+80 PRINT "TEST"
+90 PRINT BC
+100 PRINT "missing
+110 PRINT "Larger string for substring calculation testing"

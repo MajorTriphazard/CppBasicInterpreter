@@ -1,5 +1,6 @@
 #include "Handler.h"
 #include "ifStatement.h"
+#include "printStatement.h"
 
 
 Handler::Handler()
@@ -70,7 +71,7 @@ bool Handler::operator>>(std::istream &input)
 		}
 		else if (opType == "PRINT")
 		{
-
+			&_lineList->insert(std::pair<int, LineNode*>(lineNumber, new PrintStatement(line, *_variables)));
 		}
 		else {
 			std::cout << "Syntax Error at line " << lineNumber << ". Unknown command: " << opType << std::endl;
