@@ -1,6 +1,9 @@
 #include "Handler.h"
 #include "ifStatement.h"
 #include "printStatement.h"
+#include "GoToStatement.h"
+#include "InputStatement.h"
+#include "LetStatement.h"
 
 
 Handler::Handler()
@@ -64,10 +67,18 @@ bool Handler::operator>>(std::istream &input)
 		}
 		else if (opType == "INPUT")
 		{
-
+			InputStatement* myInput = new InputStatement(line, *_variables);
+			&_lineList->insert(std::pair<int, LineNode*>(lineNumber, myInput));
 		}
 		else if (opType == "LET")
 		{
+			LetStatement* myLet = new LetStatement(line, *_variables);
+			&_lineList->insert(std::pair<int, LineNode*>(lineNumber, myLet));
+		}
+		else if (opType == "GOTO")
+		{
+			GoToStatement* myGoTo = new GoToStatement(line, *_variables);
+			&_lineList->insert(std::pair<int, LineNode*>(lineNumber, myGoTo));
 		}
 		else if (opType == "PRINT")
 		{
@@ -92,9 +103,8 @@ bool Handler::executeProgram() {
 	{
 		if ((*_lineList).count(_iterator) == 1)
 		{
-			(*_lineList)[_iterator]->Run(*_lineList, *_variables, _iterator);
 			std::cout << "Running line " << _iterator << std::endl;
-			_iterator++;
+			(*_lineList)[_iterator]->Run(*_lineList, *_variables, _iterator);
 		}
 		else
 		{

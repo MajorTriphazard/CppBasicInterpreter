@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{25C30B3C-7541-41D3-AAE8-3E112C196C60}</ProjectGuid>
     <RootNamespace>Project1</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -115,19 +115,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GoToStatement.cpp" />
     <ClCompile Include="Handler.cpp" />
     <ClCompile Include="ifStatement.cpp" />
+    <ClCompile Include="InputStatement.cpp" />
+    <ClCompile Include="LetStatement.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="printStatement.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GoToStatement.h" />
     <ClInclude Include="Handler.h" />
     <ClInclude Include="ifStatement.h" />
+    <ClInclude Include="InputStatement.h" />
+    <ClInclude Include="LetStatement.h" />
     <ClInclude Include="LineNode.h" />
     <ClInclude Include="printStatement.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Text2.txt" />
     <Text Include="Text.txt" />
+    <Text Include="Text3.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

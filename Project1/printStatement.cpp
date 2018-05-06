@@ -49,6 +49,6 @@ bool PrintStatement::Run(std::map<int, LineNode*>& LineList, std::map<std::strin
 
 		std::cout << toPrint->second << std::endl;
 	}
-	
+	iterator++;
 	return true;
 }

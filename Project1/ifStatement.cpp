@@ -77,5 +77,9 @@ bool ifStatement::Run(std::map<int, LineNode*>& linelist, std::map<std::string, 
 	if (!isTrue) {
 		iterator = _endIfLineNumber;
 	}
+	else
+	{
+		iterator++;
+	}
 	return true;
 }
