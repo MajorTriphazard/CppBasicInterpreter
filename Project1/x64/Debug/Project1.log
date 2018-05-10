@@ -1,2 +1,13 @@
-﻿  LetStatement.cpp
-  Project1.vcxproj -> C:\Users\Michael Taricone\Source\Repos\CppBasicInterpreter\x64\Debug\Project1.exe
+﻿  ExceptionRuntimeError.cpp
+  ExceptionSyntaxError.cpp
+  GoToStatement.cpp
+  Handler.cpp
+  ifStatement.cpp
+  InputStatement.cpp
+  LetStatement.cpp
+  main.cpp
+  printStatement.cpp
+  Generating Code...
+c:\users\genna\source\repos\cppbasicinterpreter\project1\handler.cpp(119): warning C4715: 'Handler::executeProgram': not all control paths return a value
+c:\users\genna\source\repos\cppbasicinterpreter\project1\handler.cpp(95): warning C4715: 'Handler::operator>>': not all control paths return a value
+  Project1.vcxproj -> C:\Users\Genna\source\repos\CppBasicInterpreter\x64\Debug\Project1.exe

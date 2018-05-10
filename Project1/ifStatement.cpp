@@ -1,5 +1,6 @@
 #include "ifStatement.h"
 
+
 ifStatement::ifStatement(std::string commandString, std::map<std::string, int>& variables)
 {
 	int lineNumber;
@@ -7,7 +8,21 @@ ifStatement::ifStatement(std::string commandString, std::map<std::string, int>& 
 	char op;
 	std::stringstream commandStream(commandString);
 	commandStream >> lineNumber >> opType;
-	commandStream >> nextBit;
+	std::string remainder;
+	try
+	{
+		std::string remainder(commandStream.str().substr(commandStream.tellg()));
+		for (std::string::size_type i = 0; i < remainder.size(); ++i)
+		{
+			if (!isspace(remainder[i]))
+			nextBit += remainder[i];
+		}
+	}
+	catch(std::out_of_range n)
+	{
+		std::cout << "Error invalid syntax at line " << lineNumber << std::endl;
+	}
+
 	if (nextBit.find("=") != std::string::npos) {
 		size_t a = nextBit.find("=");
 		op = '=';
@@ -27,8 +42,12 @@ ifStatement::ifStatement(std::string commandString, std::map<std::string, int>& 
 		arg2 = nextBit.substr(a+1, nextBit.size());
 	}
 	else {
-		std::cout << "DID I GET HERE? " << nextBit << std::endl;
-		//not sure of this case
+		arg1 = "";
+		arg2 = "";
+		op = ' ';
+		//Syntax error of some form
+		std::cout << "ERROR unknown syntax at line: " << lineNumber << std::endl;
+		throw ExceptionSyntaxError();
 	}
 
 	if (!variables.count(arg1)) 
@@ -57,7 +76,7 @@ bool ifStatement::Run(std::map<int, LineNode*>& linelist, std::map<std::string, 
 	int valArg1 = variables[_arg1];
 	std::stringstream temp(_arg2);
 	int valArg2;
-	bool isTrue;
+	bool isTrue = false;
 	temp >> valArg2;
 	switch (_op) {
 		case '=':

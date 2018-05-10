@@ -44,6 +44,7 @@ bool PrintStatement::Run(std::map<int, LineNode*>& LineList, std::map<std::strin
 		if (toPrint == variables.end())
 		{
 			std::cerr << value << " does not exist" << std::endl;
+			throw ExceptionRuntimeError();
 			return false;
 		}
 

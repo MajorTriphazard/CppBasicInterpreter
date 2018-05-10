@@ -115,6 +115,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ExceptionRuntimeError.cpp" />
+    <ClCompile Include="ExceptionSyntaxError.cpp" />
     <ClCompile Include="GoToStatement.cpp" />
     <ClCompile Include="Handler.cpp" />
     <ClCompile Include="ifStatement.cpp" />
@@ -124,6 +126,8 @@
     <ClCompile Include="printStatement.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ExceptionRuntimeError.h" />
+    <ClInclude Include="ExceptionSyntaxError.h" />
     <ClInclude Include="GoToStatement.h" />
     <ClInclude Include="Handler.h" />
     <ClInclude Include="ifStatement.h" />

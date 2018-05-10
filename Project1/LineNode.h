@@ -3,6 +3,8 @@
 #include <sstream>
 #include <string>
 #include <map>
+#include "ExceptionSyntaxError.h"
+#include "ExceptionRuntimeError.h"
 
 class LineNode
 {

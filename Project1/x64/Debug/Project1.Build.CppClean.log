@@ -1,8 +1,14 @@
 c:\users\genna\source\repos\cppbasicinterpreter\project1\x64\debug\vc141.pdb
 c:\users\genna\source\repos\cppbasicinterpreter\project1\x64\debug\vc141.idb
+c:\users\genna\source\repos\cppbasicinterpreter\project1\x64\debug\printstatement.obj
 c:\users\genna\source\repos\cppbasicinterpreter\project1\x64\debug\main.obj
+c:\users\genna\source\repos\cppbasicinterpreter\project1\x64\debug\letstatement.obj
+c:\users\genna\source\repos\cppbasicinterpreter\project1\x64\debug\inputstatement.obj
 c:\users\genna\source\repos\cppbasicinterpreter\project1\x64\debug\ifstatement.obj
 c:\users\genna\source\repos\cppbasicinterpreter\project1\x64\debug\handler.obj
+c:\users\genna\source\repos\cppbasicinterpreter\project1\x64\debug\gotostatement.obj
+c:\users\genna\source\repos\cppbasicinterpreter\project1\x64\debug\exceptionsyntaxerror.obj
+c:\users\genna\source\repos\cppbasicinterpreter\project1\x64\debug\exceptionruntimeerror.obj
 c:\users\genna\source\repos\cppbasicinterpreter\x64\debug\project1.exe
 c:\users\genna\source\repos\cppbasicinterpreter\x64\debug\project1.ilk
 c:\users\genna\source\repos\cppbasicinterpreter\x64\debug\project1.pdb

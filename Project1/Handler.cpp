@@ -17,99 +17,103 @@ Handler::~Handler(){}
 
 bool Handler::operator>>(std::istream &input)
 {
-	std::string line;
-	int lineNumber;
-	std::string opType;
-	std::stack<int> ifStack;
-	ifStatement* myIf;
-	&_variables->insert(std::pair<std::string, int>("A", 9));
-	&_variables->insert(std::pair<std::string, int>("B", 10));
-	&_variables->insert(std::pair<std::string, int>("C", 11));
-	while (getline(input, line)) 
+	try 
 	{
-		std::stringstream lineStream(line);
-		lineStream >> lineNumber >> opType;
+		std::string line;
+		int lineNumber;
+		std::string opType;
+		std::stack<int> ifStack;
+		while (getline(input, line))
+		{
+			std::stringstream lineStream(line);
+			lineStream >> lineNumber >> opType;
 
-		//Line repeated
-		if ((*_lineList).count(lineNumber) != 0) {
-			std::cout << "Syntax Error, line number: " << lineNumber << " is repeated" << std::endl;
+			//Line repeated
+			if ((*_lineList).count(lineNumber) != 0) {
+				std::cout << "Syntax Error, line number: " << lineNumber << " is repeated" << std::endl;
+				return false;
+			}
+
+			//put all to uppercase for simplicity
+			std::transform(opType.begin(), opType.end(), opType.begin(), ::toupper);
+			//check which opperator it is
+			if (opType == "IF")
+			{
+				&_lineList->insert(std::pair<int, LineNode*>(lineNumber, new ifStatement(line, *_variables)));
+				ifStack.push(lineNumber);
+			}
+			else if (opType == "ENDIF")
+			{
+				//check there is a valid if for the end if
+				if (ifStack.size() > 0)
+				{
+					// upon finding end if set respective if's endifline value
+					int ifLine = ifStack.top();
+					((ifStatement*)(*_lineList)[ifLine])->setEndIf(lineNumber);
+					ifStack.pop();
+				}
+				else
+				{
+					std::cout << "Error: no matching if for this end if at line: " << lineNumber << std::endl;
+					return false;
+					// error end line found but no if statment matches
+				}
+			}
+			else if (opType == "INPUT")
+			{
+				&_lineList->insert(std::pair<int, LineNode*>(lineNumber, new InputStatement(line, *_variables)));
+			}
+			else if (opType == "LET")
+			{
+				&_lineList->insert(std::pair<int, LineNode*>(lineNumber, new LetStatement(line, *_variables)));
+			}
+			else if (opType == "GOTO")
+			{
+				&_lineList->insert(std::pair<int, LineNode*>(lineNumber, new GoToStatement(line, *_variables)));
+			}
+			else if (opType == "PRINT")
+			{
+				&_lineList->insert(std::pair<int, LineNode*>(lineNumber, new PrintStatement(line, *_variables)));
+			}
+			else {
+				std::cout << "Syntax Error at line " << lineNumber << ". Unknown command: " << opType << std::endl;
+				return false;
+			}
+		}
+		//if whole program checked and there are unclosed if statements
+		if (ifStack.size() != 0)
+		{
+			std::cout << "Error: end if not found for IF line: " << ifStack.top() << std::endl;
 			return false;
 		}
+		return true;
+	}
+	catch (ExceptionSyntaxError) 
+	{
+		std::cout << "We caught an exception" << std::endl;
+	}
+}
 
-		//put all to uppercase for simplicity
-		std::transform(opType.begin(), opType.end(), opType.begin(), ::toupper);
-
-		//check which opperator it is
-		if (opType == "IF")
+bool Handler::executeProgram() 
+{
+	try
+	{
+		while (true)
 		{
-			myIf = new ifStatement(line,*_variables);
-			ifStack.push(lineNumber);
-			&_lineList->insert(std::pair<int, LineNode*>(lineNumber, myIf));
-				//create if statement class
-		}
-		else if (opType == "ENDIF")
-		{
-			//check there is a valid if for the end if
-			if (ifStack.size() > 0)
+			if ((*_lineList).count(_iterator) == 1)
 			{
-				// upon finding end if set respective if's endifline value
-				int ifLine = ifStack.top();
-				ifStack.pop();
-				myIf = (ifStatement*)(*_lineList)[ifLine];
-				myIf->setEndIf(lineNumber);
+				std::cout << "Running line " << _iterator << std::endl;
+				(*_lineList)[_iterator]->Run(*_lineList, *_variables, _iterator);
 			}
 			else
 			{
-				std::cout << "Error: no matching if for this end if at line: " << lineNumber << std::endl;
-				return false;
-				// error end line found but no if statment matches
+				_iterator++;
 			}
 		}
-		else if (opType == "INPUT")
-		{
-			InputStatement* myInput = new InputStatement(line, *_variables);
-			&_lineList->insert(std::pair<int, LineNode*>(lineNumber, myInput));
-		}
-		else if (opType == "LET")
-		{
-			LetStatement* myLet = new LetStatement(line, *_variables);
-			&_lineList->insert(std::pair<int, LineNode*>(lineNumber, myLet));
-		}
-		else if (opType == "GOTO")
-		{
-			GoToStatement* myGoTo = new GoToStatement(line, *_variables);
-			&_lineList->insert(std::pair<int, LineNode*>(lineNumber, myGoTo));
-		}
-		else if (opType == "PRINT")
-		{
-			&_lineList->insert(std::pair<int, LineNode*>(lineNumber, new PrintStatement(line, *_variables)));
-		}
-		else {
-			std::cout << "Syntax Error at line " << lineNumber << ". Unknown command: " << opType << std::endl;
-			return false;
-		}
+		return true;
 	}
-	//if whole program checked and there are unclosed if statements
-	if (ifStack.size() != 0)
+	catch(ExceptionRuntimeError)
 	{
-		std::cout << "Error: end if not found for IF line: " << ifStack.top() << std::endl;
-		return false;
+		std::cout << "We caught an exception 2 " << std::endl;
 	}
-	return true;
-}
-
-bool Handler::executeProgram() {
-	while (true)
-	{
-		if ((*_lineList).count(_iterator) == 1)
-		{
-			std::cout << "Running line " << _iterator << std::endl;
-			(*_lineList)[_iterator]->Run(*_lineList, *_variables, _iterator);
-		}
-		else
-		{
-			_iterator++;
-		}
-	}
-	return true;
 }

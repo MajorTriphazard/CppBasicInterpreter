@@ -1,11 +1,11 @@
-10 if A<111
-20 if B=10
+10 if B<10
+20 if B<10
 30 if C>100
 40 endif
 50 ENDIF
 60 ENDIF
 70 PRINT A
 80 PRINT "TEST"
-90 PRINT B
+90 PRINT T
 100 PRINT "missing""
 110 PRINT "Larger string for substring calculation testing"
