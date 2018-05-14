@@ -2,8 +2,10 @@
 
 
 
-ExceptionRuntimeError::ExceptionRuntimeError()
+ExceptionRuntimeError::ExceptionRuntimeError(std::string errMsg, std::string line)
 {
+	errorMessage = errMsg;
+	lineContents = line;
 }
 
 

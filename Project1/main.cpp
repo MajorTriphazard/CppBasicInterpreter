@@ -2,13 +2,24 @@
 
 
 
-int main() 
+int main(int argc, char *argv[])
 {
-	Handler* handleThis = new Handler();
-	//std::ifstream myfile("C:\\Users\\Michael Taricone\\source\\repos\\CppBasicInterpreter\\Project1\\Text3.txt");
-	// std::ifstream myfile("C:\\Users\\scott\\Documents\\C++BasicInterpreter\\Project1\\Text.txt");
-	std::ifstream myfile("C:\\Users\\Genna\\source\\\\repos\\CppBasicInterpreter\\Project1\\Text.txt");
-	*handleThis >> myfile;
-	handleThis->executeProgram();
-	std::cin.get();
+	if (argc != 2) 
+	{
+		std::cout << "Please check input arguments" << std::endl;
+	}
+	else
+	{
+		std::ifstream inputFile(argv[1]);
+		if (!inputFile) {
+			std::cout << "Cannot find file, please check input filename" << std::endl;
+		}
+		else {
+			Handler* handleThis = new Handler();
+			*handleThis >> inputFile;
+			inputFile.close();
+			handleThis->executeProgram();
+		}
+	}
+
 }

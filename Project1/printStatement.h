@@ -10,6 +10,7 @@ public:
 	~PrintStatement();
 
 	bool isStringLiteral;
+	std::string line;
 	std::string value;
 	bool Run(std::map<int, LineNode*>&, std::map<std::string, int>&, int&);
 };

@@ -7,10 +7,9 @@
 class ExceptionSyntaxError
 {
 public:
-	int line;
 	std::string lineContents;
 	std::string errorMessage;
-	ExceptionSyntaxError();
+	ExceptionSyntaxError(std::string, std::string);
 	~ExceptionSyntaxError();
 };
 

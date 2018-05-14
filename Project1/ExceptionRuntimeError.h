@@ -6,10 +6,9 @@
 class ExceptionRuntimeError
 {
 public:
-	int line;
 	std::string lineContents;
 	std::string errorMessage;
-	ExceptionRuntimeError();
+	ExceptionRuntimeError(std::string, std::string);
 	~ExceptionRuntimeError();
 };
 

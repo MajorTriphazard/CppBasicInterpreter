@@ -13,7 +13,16 @@ Handler::Handler()
 	_iterator = 0;
 }
 
-Handler::~Handler(){}
+Handler::~Handler()
+{
+	delete _variables;
+	// delete pointers to each line class first, then the map
+	for (std::map<int, LineNode*>::iterator itr = _lineList->begin(); itr != _lineList->end(); itr++)
+	{
+		delete itr->second;
+	}
+	delete _lineList;
+}
 
 bool Handler::operator>>(std::istream &input)
 {
@@ -88,9 +97,11 @@ bool Handler::operator>>(std::istream &input)
 		}
 		return true;
 	}
-	catch (ExceptionSyntaxError) 
+	catch (ExceptionSyntaxError e) 
 	{
-		std::cout << "We caught an exception" << std::endl;
+		std::cout << e.errorMessage << std::endl;
+		std::cout << e.lineContents << std::endl;
+		return false;
 	}
 }
 
@@ -112,8 +123,10 @@ bool Handler::executeProgram()
 		}
 		return true;
 	}
-	catch(ExceptionRuntimeError)
+	catch(ExceptionRuntimeError e)
 	{
-		std::cout << "We caught an exception 2 " << std::endl;
+		std::cout << e.errorMessage << std::endl;
+		std::cout << e.lineContents << std::endl;
+		return false;
 	}
 }

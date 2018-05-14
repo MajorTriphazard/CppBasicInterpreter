@@ -44,14 +44,14 @@ void LetStatement::IsVar(std::map<int, LineNode*>& LineList, std::map<std::strin
 	//Checking if input variable exists, changing the value if it does, creating it if it doesn't
 	if (it == variables.end())
 	{
-		std::cout << "Variable " << A << " does not exist." << std::endl;
+		throw ExceptionSyntaxError("Variable " + A + " does not exist.", "");
 	}
 	it = variables.find(B);
 
 	//Checking if input variable exists, changing the value if it does, creating it if it doesn't
 	if (it == variables.end())
 	{
-		std::cout << "Variable " << B << " does not exist." << std::endl;
+		throw ExceptionSyntaxError("Variable " + B + " does not exist.", "");
 	}
 
 	it = variables.find(C);
@@ -59,7 +59,7 @@ void LetStatement::IsVar(std::map<int, LineNode*>& LineList, std::map<std::strin
 	//Checking if input variable exists, changing the value if it does, creating it if it doesn't
 	if (it == variables.end())
 	{
-		std::cout << "Variable " << C << " does not exist." << std::endl;
+		throw ExceptionSyntaxError("Variable " + C + " does not exist.", "");
 	}
 }
 
@@ -100,6 +100,6 @@ void LetStatement::LetOperation(std::map<int, LineNode*>& LineList, std::map<std
 	}
 	else
 	{
-		std::cout << "Invalid Operation." << std::endl;
+		throw ExceptionSyntaxError("Invalid Operation","");
 	}
 }

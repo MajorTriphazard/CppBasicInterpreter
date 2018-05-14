@@ -20,7 +20,9 @@ ifStatement::ifStatement(std::string commandString, std::map<std::string, int>& 
 	}
 	catch(std::out_of_range n)
 	{
-		std::cout << "Error invalid syntax at line " << lineNumber << std::endl;
+		std::string Errorstring;
+		Errorstring = "Error invalid syntax at line " + std::to_string(lineNumber);
+		throw ExceptionSyntaxError(Errorstring, commandString);
 	}
 
 	if (nextBit.find("=") != std::string::npos) {
@@ -46,13 +48,14 @@ ifStatement::ifStatement(std::string commandString, std::map<std::string, int>& 
 		arg2 = "";
 		op = ' ';
 		//Syntax error of some form
-		std::cout << "ERROR unknown syntax at line: " << lineNumber << std::endl;
-		throw ExceptionSyntaxError();
+		throw ExceptionSyntaxError("ERROR: unknown syntax at line: " + std::to_string(lineNumber), commandString);
 	}
 
 	if (!variables.count(arg1)) 
 	{
-		std::cout << "Variable " << arg1 << " does not exist" << std::endl;
+		std::string Errorstring;
+		Errorstring =  "ERROR: Variable " + arg1 + " does not exist. At line: " + std::to_string(lineNumber);
+		throw ExceptionSyntaxError(Errorstring, commandString);
 	}
 	_arg1 = arg1;
 	_arg2 = arg2;

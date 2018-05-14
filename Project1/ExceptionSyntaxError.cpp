@@ -2,8 +2,10 @@
 
 
 
-ExceptionSyntaxError::ExceptionSyntaxError()
+ExceptionSyntaxError::ExceptionSyntaxError(std::string errMsg, std::string line)
 {
+	errorMessage = errMsg;
+	lineContents = line;
 }
 
 

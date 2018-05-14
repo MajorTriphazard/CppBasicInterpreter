@@ -3,6 +3,7 @@
 
 PrintStatement::PrintStatement(std::string argument, std::map<std::string, int>& variables)
 {
+	line = argument;
 	std::size_t quotesStart = argument.find('\"');
 	if (quotesStart == std::string::npos)
 	{
@@ -43,8 +44,7 @@ bool PrintStatement::Run(std::map<int, LineNode*>& LineList, std::map<std::strin
 		std::map<std::string, int>::iterator toPrint = variables.find(value);
 		if (toPrint == variables.end())
 		{
-			std::cerr << value << " does not exist" << std::endl;
-			throw ExceptionRuntimeError();
+			throw ExceptionRuntimeError(value + " does not exist", line);
 			return false;
 		}
 
