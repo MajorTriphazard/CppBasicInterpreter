@@ -8,12 +8,12 @@
 class LetStatement : public LineNode
 {
 public:
-	std::string _arg1, _arg2, _operator;
+	std::string _arg1, _arg2;
 	std::string _var1, _var2, _var3;
+	bool _var2Num, _var3Num, _2vars;
+	char  _operator;
+
 	LetStatement(std::string, std::map<std::string, int>&);
 	~LetStatement();
 	bool Run(std::map<int, LineNode*>& LineList, std::map<std::string, int>& variables, int& iterator);
-	void LetOperator(std::map<int, LineNode*>& LineList, std::map<std::string, int>& variables, int& iterator);
-	void IsVar(std::map<int, LineNode*>& LineList, std::map<std::string, int>& variables, int& iterator, std::string, std::string, std::string);
-	void LetOperation(std::map<int, LineNode*>& LineList, std::map<std::string, int>& variables, int& iterator);
-};
+	};
