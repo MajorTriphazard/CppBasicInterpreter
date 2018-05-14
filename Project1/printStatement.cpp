@@ -10,7 +10,7 @@ PrintStatement::PrintStatement(std::string argument, std::map<std::string, int>&
 		isStringLiteral = false;
 		std::string command = "PRINT ";
 		std::size_t commandLocation = argument.find(command) + (unsigned)command.length();
-		value = argument.substr(commandLocation, (unsigned)argument.length() - commandLocation);
+		_value = argument.substr(commandLocation, (unsigned)argument.length() - commandLocation);
 	}
 	else
 	{
@@ -19,11 +19,11 @@ PrintStatement::PrintStatement(std::string argument, std::map<std::string, int>&
 		std::size_t quotesEnd = argument.find('\"', quotesStart);
 		if (quotesEnd == std::string::npos)
 		{
-			value = "Missing quotes";
+			_value = "Missing quotes";
 		}
 		else
 		{
-			value = argument.substr(quotesStart, quotesEnd - quotesStart);
+			_value = argument.substr(quotesStart, quotesEnd - quotesStart);
 		}
 	}
 }
@@ -37,14 +37,22 @@ bool PrintStatement::Run(std::map<int, LineNode*>& LineList, std::map<std::strin
 {
 	if (isStringLiteral)
 	{
-		std::cout << value << std::endl;
+		//std::string value = _value;
+		//size_t pos = 0;
+		//std::string temp;
+		//while ((pos = value.find("\\N")) != std::string::npos) {
+		//	temp = value.substr(0, pos);
+		//	std::cout << temp << std::endl;
+		//	value.erase(0, pos + 2);
+		//}
+		std::cout << _value << std::endl;
 	}
 	else
 	{
-		std::map<std::string, int>::iterator toPrint = variables.find(value);
+		std::map<std::string, int>::iterator toPrint = variables.find(_value);
 		if (toPrint == variables.end())
 		{
-			throw ExceptionRuntimeError(value + " does not exist", line);
+			throw ExceptionRuntimeError(_value + " does not exist", line);
 			return false;
 		}
 

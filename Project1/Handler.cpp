@@ -115,9 +115,7 @@ bool Handler::executeProgram()
 		{
 			if ((*_lineList).count(_iterator) >0)
 			{
-				std::cout << "Running Line " << _iterator << std::endl;
 				(*_lineList)[_iterator]->Run(*_lineList, *_variables, _iterator);
-				std::cout << "Ran line " << _iterator << std::endl;
 			}
 			else
 			{

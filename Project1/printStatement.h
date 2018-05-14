@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <map>
+#include <vector>
 #include "LineNode.h"
 
 class PrintStatement : public LineNode
@@ -11,6 +12,6 @@ public:
 
 	bool isStringLiteral;
 	std::string line;
-	std::string value;
+	std::string _value;
 	bool Run(std::map<int, LineNode*>&, std::map<std::string, int>&, int&);
 };

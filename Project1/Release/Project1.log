@@ -1,6 +1,7 @@
-﻿  Generating code
-  2 of 705 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+﻿  InputStatement.cpp
+  Generating code
+  1 of 706 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    6 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Project1.vcxproj -> C:\Users\Genna\source\repos\CppBasicInterpreter\Release\Project1.exe
