@@ -37,15 +37,18 @@ bool PrintStatement::Run(std::map<int, LineNode*>& LineList, std::map<std::strin
 {
 	if (isStringLiteral)
 	{
-		//std::string value = _value;
-		//size_t pos = 0;
-		//std::string temp;
-		//while ((pos = value.find("\\N")) != std::string::npos) {
-		//	temp = value.substr(0, pos);
-		//	std::cout << temp << std::endl;
-		//	value.erase(0, pos + 2);
-		//}
-		std::cout << _value << std::endl;
+		//check for any newline characters and if they exist then print a new line
+		std::string value = _value;
+		size_t pos = 0;
+		std::string temp, newLine;
+		newLine = "\\n";
+		while ((pos = value.find(newLine)) != std::string::npos) {
+			temp = value.substr(0, pos);
+			std::cout << temp << std::endl;
+			value.erase(0, pos + newLine.length());
+		}
+		//print remaining
+		std::cout << value;
 	}
 	else
 	{
@@ -56,7 +59,7 @@ bool PrintStatement::Run(std::map<int, LineNode*>& LineList, std::map<std::strin
 			return false;
 		}
 
-		std::cout << toPrint->second << std::endl;
+		std::cout << toPrint->second;
 	}
 	iterator++;
 	return true;
