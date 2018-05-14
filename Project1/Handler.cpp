@@ -85,7 +85,9 @@ bool Handler::operator>>(std::istream &input)
 				&_lineList->insert(std::pair<int, LineNode*>(lineNumber, new PrintStatement(line, *_variables)));
 			}
 			else {
-				std::cout << "Syntax Error at line " << lineNumber << ". Unknown command: " << opType << std::endl;
+				throw ExceptionSyntaxError("Unknown command at line" + std::to_string(lineNumber), line);
+				std::cout << "Unknown command at line" + std::to_string(lineNumber) << std::endl;
+				std::cout << line << std::endl;
 				return false;
 			}
 		}
@@ -111,10 +113,11 @@ bool Handler::executeProgram()
 	{
 		while (true)
 		{
-			if ((*_lineList).count(_iterator) == 1)
+			if ((*_lineList).count(_iterator) >0)
 			{
-				std::cout << "Running line " << _iterator << std::endl;
+				std::cout << "Running Line " << _iterator << std::endl;
 				(*_lineList)[_iterator]->Run(*_lineList, *_variables, _iterator);
+				std::cout << "Ran line " << _iterator << std::endl;
 			}
 			else
 			{

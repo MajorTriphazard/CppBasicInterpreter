@@ -19,9 +19,8 @@ bool InputStatement::Run(std::map<int, LineNode*>& LineList, std::map<std::strin
 {
 	int input;
 	// Obtaining value for variable
-	std::cout << "Enter an integer input for the vairable: " << _input << std::endl;
+	std::cout << std::endl << "Enter an integer input for the vairable: " << _input << std::endl;
 	std::cin >> input;
-	
 	if (!std::cin) {
 		std::cout << "Invalid Input: not an integer." << std::endl;
 		throw ExceptionRuntimeError("Invalid Input : not an integer.", "");

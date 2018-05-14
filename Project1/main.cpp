@@ -15,10 +15,14 @@ int main(int argc, char *argv[])
 			std::cout << "Cannot find file, please check input filename" << std::endl;
 		}
 		else {
+			bool readCorrectly;
 			Handler* handleThis = new Handler();
-			*handleThis >> inputFile;
+			readCorrectly = *handleThis >> inputFile;
 			inputFile.close();
-			handleThis->executeProgram();
+			if (readCorrectly)
+			{
+				handleThis->executeProgram();
+			}
 		}
 	}
 

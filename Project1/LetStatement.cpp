@@ -12,7 +12,7 @@ LetStatement::LetStatement(std::string argument, std::map<std::string, int>& var
 	_arg2 = arg2;
 }
 
-LetStatement::~LetStatement(){}
+LetStatement::~LetStatement() {}
 
 bool LetStatement::Run(std::map<int, LineNode*>& LineList, std::map<std::string, int>& variables, int& iterator)
 {
@@ -25,15 +25,14 @@ void LetStatement::LetOperator(std::map<int, LineNode*>& LineList, std::map<std:
 {
 	std::string eq_op;
 
-	_var1 = _arg2.substr(0,1);
-	eq_op = _arg2.substr(1,1);
-	_var2 = _arg2.substr(2,1);
-	_operator = _arg2.substr(3,1);
+	_var1 = _arg2.substr(0, 1);
+	eq_op = _arg2.substr(1, 1);
+	_var2 = _arg2.substr(2, 1);
+	_operator = _arg2.substr(3, 1);
 	_var3 = _arg2.substr(4, 1);
-
 	IsVar(LineList, variables, iterator, _var1, _var2, _var3);
 	LetOperation(LineList, variables, iterator);
-	}
+}
 
 void LetStatement::IsVar(std::map<int, LineNode*>& LineList, std::map<std::string, int>& variables, int& iterator, std::string A, std::string B, std::string C)
 {
@@ -79,7 +78,7 @@ void LetStatement::LetOperation(std::map<int, LineNode*>& LineList, std::map<std
 		j = variables[_var2];
 		k = variables[_var3];
 		i = j * k;
-		//std::cout << "i= " << i << " j= " << j << " k= " << k << std::endl;
+		std::cout << "i= " << i << " j= " << j << " k= " << k << std::endl;
 		variables[_var1] = i;
 	}
 	else if (_operator == "/")
@@ -100,6 +99,6 @@ void LetStatement::LetOperation(std::map<int, LineNode*>& LineList, std::map<std
 	}
 	else
 	{
-		throw ExceptionSyntaxError("Invalid Operation","");
+		throw ExceptionSyntaxError("Invalid Operation", "");
 	}
 }

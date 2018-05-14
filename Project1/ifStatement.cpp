@@ -4,7 +4,7 @@
 ifStatement::ifStatement(std::string commandString, std::map<std::string, int>& variables)
 {
 	int lineNumber;
-	std::string opType,nextBit,arg1,arg2;
+	std::string opType, nextBit, arg1, arg2;
 	char op;
 	std::stringstream commandStream(commandString);
 	commandStream >> lineNumber >> opType;
@@ -15,10 +15,10 @@ ifStatement::ifStatement(std::string commandString, std::map<std::string, int>& 
 		for (std::string::size_type i = 0; i < remainder.size(); ++i)
 		{
 			if (!isspace(remainder[i]))
-			nextBit += remainder[i];
+				nextBit += remainder[i];
 		}
 	}
-	catch(std::out_of_range n)
+	catch (std::out_of_range n)
 	{
 		std::string Errorstring;
 		Errorstring = "Error invalid syntax at line " + std::to_string(lineNumber);
@@ -29,19 +29,19 @@ ifStatement::ifStatement(std::string commandString, std::map<std::string, int>& 
 		size_t a = nextBit.find("=");
 		op = '=';
 		arg1 = nextBit.substr(0, a);
-		arg2 = nextBit.substr(a+1, nextBit.size());
+		arg2 = nextBit.substr(a + 1, nextBit.size());
 	}
 	else if (nextBit.find("<") != std::string::npos) {
 		size_t a = nextBit.find("<");
 		op = '<';
 		arg1 = nextBit.substr(0, a);
-		arg2 = nextBit.substr(a+1, nextBit.size());
+		arg2 = nextBit.substr(a + 1, nextBit.size());
 	}
 	else if (nextBit.find(">") != std::string::npos) {
 		size_t a = nextBit.find(">");
 		op = '>';
 		arg1 = nextBit.substr(0, a);
-		arg2 = nextBit.substr(a+1, nextBit.size());
+		arg2 = nextBit.substr(a + 1, nextBit.size());
 	}
 	else {
 		arg1 = "";
@@ -51,10 +51,10 @@ ifStatement::ifStatement(std::string commandString, std::map<std::string, int>& 
 		throw ExceptionSyntaxError("ERROR: unknown syntax at line: " + std::to_string(lineNumber), commandString);
 	}
 
-	if (!variables.count(arg1)) 
+	if (!variables.count(arg1))
 	{
 		std::string Errorstring;
-		Errorstring =  "ERROR: Variable " + arg1 + " does not exist. At line: " + std::to_string(lineNumber);
+		Errorstring = "ERROR: Variable " + arg1 + " does not exist. At line: " + std::to_string(lineNumber);
 		throw ExceptionSyntaxError(Errorstring, commandString);
 	}
 	_arg1 = arg1;
@@ -82,18 +82,18 @@ bool ifStatement::Run(std::map<int, LineNode*>& linelist, std::map<std::string, 
 	bool isTrue = false;
 	temp >> valArg2;
 	switch (_op) {
-		case '=':
-			isTrue = (valArg1 == valArg2);
-			break;
-		case '<':
-			isTrue = (valArg1 < valArg2);
-			break;
-		case '>':
-			isTrue = (valArg1 > valArg2);
-			break;
-		default:
-			//should never get here!
-			break;
+	case '=':
+		isTrue = (valArg1 == valArg2);
+		break;
+	case '<':
+		isTrue = (valArg1 < valArg2);
+		break;
+	case '>':
+		isTrue = (valArg1 > valArg2);
+		break;
+	default:
+		//should never get here!
+		break;
 	}
 
 	if (!isTrue) {
