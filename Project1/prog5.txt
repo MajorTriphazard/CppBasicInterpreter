@@ -1,0 +1,11 @@
+10 PRINT "How many legs does a horse have\n"
+20 INPUT A
+30 IF A=10 THEN
+40 PRINT "Think your smart do you\n"
+50 PRINT "Bye Bye\n"
+60 GOTO 10
+70 ENDIF
+80 PRINT A
+90 PRINT ", no, 10, 2 fore legs and 2 hind\n"
+100 PRINT "Ho Ho!!\n"
+110 GOTO 10
