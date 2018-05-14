@@ -1,1 +1,13 @@
-﻿  Project1.vcxproj -> C:\Users\scott\Documents\C++BasicInterpreter\Release\Project1.exe
+﻿  GoToStatement.cpp
+  Handler.cpp
+  InputStatement.cpp
+  LetStatement.cpp
+  ifStatement.cpp
+  main.cpp
+  printStatement.cpp
+  Generating code
+  3 of 778 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    76 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Project1.vcxproj -> C:\Users\scott\Documents\C++BasicInterpreter\Release\Project1.exe
